@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Be My Valentine ❤️</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      position: relative;
+      width: 320px;
+    }
+
+    h1 {
+      color: #e91e63;
+    }
+
+    .buttons {
+      margin-top: 25px;
+      position: relative;
+      height: 120px;
+    }
+
+    button {
+      padding: 12px 22px;
+      font-size: 16px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      position: absolute;
+    }
+
+    #yesBtn {
+      background-color: #e91e63;
+      color: white;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    #noBtn {
+      background-color: #ddd;
+      color: #333;
+      left: 50%;
+      top: 60px;
+      transform: translateX(-50%);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .result {
+      margin-top: 20px;
+    }
+
+    .result img {
+      width: 100%;
+      border-radius: 12px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Will you be my Valentine? 💖</h1>
+
+    <div class="buttons" id="buttonsArea">
+      <button id="yesBtn">Yes ❤️</button>
+      <button id="noBtn">No 🙄</button>
+    </div>
+
+    <div class="result hidden" id="result">
+      <h2>Yayyy!!! 💕</h2>
+      <p>You just made me the happiest person alive 🥰</p>
+      <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="Love GIF">
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const buttonsArea = document.getElementById("buttonsArea");
+    const result = document.getElementById("result");
+
+    function moveNoButton() {
+      const areaRect = buttonsArea.getBoundingClientRect();
+      const btnRect = noBtn.getBoundingClientRect();
+
+      const maxX = areaRect.width - btnRect.width;
+      const maxY = areaRect.height - btnRect.height;
+
+      const randomX = Math.random() * maxX;
+      const randomY = Math.random() * maxY;
+
+      noBtn.style.left = `${randomX}px`;
+      noBtn.style.top = `${randomY}px`;
+    }
+
+    // Desktop hover
+    noBtn.addEventListener("mouseover", moveNoButton);
+
+    // Mobile tap
+    noBtn.addEventListener("touchstart", moveNoButton);
+
+    yesBtn.addEventListener("click", () => {
+      buttonsArea.classList.add("hidden");
+      result.classList.remove("hidden");
+    });
+  </script>
+
+</body>
+</html>
